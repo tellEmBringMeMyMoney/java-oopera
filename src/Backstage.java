@@ -29,7 +29,7 @@ public class Backstage {
     public void printMenu() {
         while (true) {
             System.out.println("Выберите вариант наполнения театра: \n " +
-                    "1 - Ручной ввод \n 2 - Автоматическое заполнение \n 3 - выход");
+                    "1 - Ручной ввод \n 2 - Автоматическое заполнение \n 3 - Выход");
             Scanner scanner = new Scanner(System.in);
             int check = scanner.nextInt();
 
@@ -130,7 +130,7 @@ public class Backstage {
             show1.setListOfActors(list1);
             show2.setListOfActors(list2);
         } else {
-            System.out.printf("Одного из актеров нет в списках. Проверьте ещё раз.\n");
+            System.out.println("Одного из актеров нет в списках. Проверьте ещё раз.\n");
         }
         System.out.println("Список после замены: \n" + piece.shortPrint() + "\n" + opera.shortPrint() +
                 "\n" + ballet.shortPrint()+ "\n");
@@ -141,10 +141,4 @@ public class Backstage {
         opera.printLibretto();
         ballet.printLibretto();
     }
-    //printLibretto()
-    //printDirector() firstname, secondname
-    //printAllActors 1st name, 2nd name, (hight)
-    //addNewActorToShow check if existed,
-    //isExist check actor existance
-    //replaceActor
 }

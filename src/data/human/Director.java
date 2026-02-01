@@ -2,8 +2,8 @@ package data.human;
 
 public class Director extends  Person{
 
-    private int numberOfShows;
-    private String role;
+    private final int numberOfShows;
+    private final String role;
 
     public Director(String firstName, String secondName, Gender gender, int numberOfShows, String role) {
         super(firstName, secondName, gender);
@@ -13,6 +13,6 @@ public class Director extends  Person{
 
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return firstName + " " + lastName + ". Роль - " + role + "Всего работ: " + numberOfShows;
     }
 }

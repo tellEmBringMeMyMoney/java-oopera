@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Opera extends MusicalShow{
 
-    private String librettoText;
+    private final String librettoText;
 
     public Opera(String title, String genre, ArrayList<Actor> listOfActors, Director director,
                  Director composer, String librettoText) {
