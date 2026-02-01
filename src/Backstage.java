@@ -1,0 +1,150 @@
+import data.human.Gender;
+import data.human.Actor;
+import data.human.Director;
+import data.show.Opera;
+import data.show.Piece;
+import data.show.Ballet;
+import data.show.Show;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Backstage {
+
+    Ballet ballet;
+    Opera opera;
+    Piece piece;
+    Actor actor1;
+    Actor actor2;
+    Actor actor3;
+    Actor actor4;
+    Director director1;
+    Director director2;
+    Director choreographer;
+    Director composer;
+    ArrayList<Actor> pieceCast = new ArrayList<>();
+    ArrayList<Actor> operaCast = new ArrayList<>();
+    ArrayList<Actor> balletCast = new ArrayList<>();
+
+    public void printMenu() {
+        while (true) {
+            System.out.println("Выберите вариант наполнения театра: \n " +
+                    "1 - Ручной ввод \n 2 - Автоматическое заполнение \n 3 - выход");
+            Scanner scanner = new Scanner(System.in);
+            int check = scanner.nextInt();
+
+            switch (check){
+                case 1:
+                    System.out.println("Ручной ввод пока не доступен :(");
+                    break;
+                case 2:
+                    createTheatre();
+                    System.out.println("----------Распечатка представлений----------");
+                    printShows();
+                    System.out.println("----------Замена актера из пула----------");
+                    swapActors(opera, opera.getListOfActors().getFirst(),
+                            piece, piece.getListOfActors().getLast());
+                    System.out.println("----------Замена актера не из пула----------");
+                    swapActors(opera, opera.getListOfActors().getFirst(),
+                            piece, actor4);
+                    System.out.println("----------Либретто оперы и балета----------");
+                    printLibretto();
+                    break;
+                case 3:
+                    return;
+                default:
+                    System.out.println("Такой команды нет. Попробуйте ещё раз");
+            }
+
+        }
+    }
+    private void createTheatre(){
+        actor1 = new Actor("Валерий", "Оперный", Gender.MALE, 170);
+        actor2 = new Actor("Бен", "Довер", Gender.MALE, 161);
+        actor3 = new Actor("Белла", "Суонн", Gender.FEMALE, 161);
+        actor4 = new Actor("Андрей", "Высокий", Gender.MALE, 230);
+
+        director1 = new Director("Семен", "Семейный", Gender.MALE,
+                6, "Режиссер");
+        director2 = new Director("Елена", "Полено", Gender.FEMALE,
+                7, "Режиссер");
+        choreographer = new Director("Татьяна", "Былинова", Gender.FEMALE,
+                20, "Хореограф");
+        composer = new Director("Шонн", "Комбс", Gender.MALE,
+                84, "Композитор");
+
+        pieceCast.add(actor1);
+        pieceCast.add(actor2);
+
+        operaCast.add(actor3);
+
+        balletCast.add(actor1);
+        balletCast.add(actor2);
+        balletCast.add(actor3);
+
+        String pieceLibretto = "Жили-были Али обжект и его 40 наследников\n" +
+                "Как-то раз они все поссорились и осталось всего 2 наследника\n" +
+                "Конец";
+
+        String operaLibretto = "В коду родилась циферка, в коду она росла\n" +
+                "Прошли года - пришла обертка, циферка ушла";
+
+        String balletLibretto = "Писал я коды до двадцатого пота \n" +
+                "Нажал \"Запустить\" - компик впредь не работал.";
+
+        piece = new Piece("Али Обжект и 40 наследников", "Пьеса", pieceCast, director1,
+                pieceLibretto);
+        opera = new Opera("Назвался интом - полезай в обертку", "Опера", operaCast,
+                director2, composer, operaLibretto);
+        ballet = new Ballet("Через тернары к строкам", "Балет", balletCast, director1,
+                 composer, choreographer, balletLibretto);
+    }
+    public void printShows(){
+        System.out.println(piece + "\n");
+        System.out.println(opera + "\n");
+        System.out.println(ballet + "\n");
+    }
+
+    public boolean checkActor(ArrayList<Actor> list, Actor person){
+        boolean result = false;
+        for (Actor men : list){
+            if (men.hashCode() == person.hashCode()){
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    public void swapActors(Show show1, Actor actor1, Show show2, Actor actor2){
+        System.out.println("Список до изменения: \n" + piece.shortPrint() + "\n" + opera.shortPrint() +
+                "\n" + ballet.shortPrint()+ "\n");
+        if (checkActor(show1.getListOfActors(), actor1) && checkActor(show2.getListOfActors(), actor2)){
+            ArrayList<Actor> list1;
+            ArrayList<Actor> list2;
+            list1 = show1.getListOfActors();
+            list2 = show2.getListOfActors();
+            list1.remove(actor1);
+            list2.remove(actor2);
+            list1.add(actor2);
+            list2.add(actor1);
+            show1.setListOfActors(list1);
+            show2.setListOfActors(list2);
+        } else {
+            System.out.printf("Одного из актеров нет в списках. Проверьте ещё раз.\n");
+        }
+        System.out.println("Список после замены: \n" + piece.shortPrint() + "\n" + opera.shortPrint() +
+                "\n" + ballet.shortPrint()+ "\n");
+
+    }
+
+    public  void printLibretto(){
+        opera.printLibretto();
+        ballet.printLibretto();
+    }
+    //printLibretto()
+    //printDirector() firstname, secondname
+    //printAllActors 1st name, 2nd name, (hight)
+    //addNewActorToShow check if existed,
+    //isExist check actor existance
+    //replaceActor
+}
