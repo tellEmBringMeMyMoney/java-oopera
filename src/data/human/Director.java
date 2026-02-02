@@ -13,6 +13,6 @@ public class Director extends  Person{
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + ". Роль - " + role + "Всего работ: " + numberOfShows;
+        return firstName + " " + lastName;
     }
 }

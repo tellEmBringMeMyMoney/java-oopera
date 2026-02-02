@@ -2,6 +2,8 @@ package data.show;
 
 import data.human.Actor;
 import data.human.Director;
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 
 public class Show {
@@ -9,14 +11,12 @@ public class Show {
     protected final String genre;
     protected ArrayList<Actor> listOfActors;
     protected final Director director;
-    protected final String librettoText;
 
-    public Show(String title, String genre, ArrayList<Actor> listOfActors, Director director, String librettoText) {
+    public Show(String title, String genre, ArrayList<Actor> listOfActors, Director director) {
         this.title = title;
         this.genre = genre;
         this.listOfActors = listOfActors;
         this.director = director;
-        this.librettoText = librettoText;
     }
 
     public ArrayList<Actor> getListOfActors() {
@@ -30,7 +30,52 @@ public class Show {
     public String shortPrint() {
         return genre + "\n" + listOfActors;
     }
-    public void printLibretto(){
-        System.out.println(genre + " " + title + ":\n" + librettoText + "\n");
+
+    public void printDirector(){
+        System.out.println(director);
+    }
+
+    public void addNewActor(Show show, Actor actor){
+        if (!checkActor(show.listOfActors, actor)){
+            listOfActors.add(actor);
+            System.out.printf("Актер " + actor + "успешно добавлен");
+        } else {
+            System.out.println("Актер уже в списке");
+        }
+    }
+
+    public boolean checkActor(ArrayList<Actor> list, Actor person){
+        boolean result = false;
+        for (Actor men : list){
+            if (men.equals(person)){
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    private boolean checkLastName(String lastName){
+        boolean result = false;
+        for (Actor men : listOfActors){
+            if (men.getLastName().equals(lastName)){
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    public void changeActors(Actor newActor, String lastName){
+        if(checkLastName(lastName)){
+            for (Actor actor : listOfActors){
+                if (lastName.equals(actor.getLastName())){
+                    listOfActors.remove(actor);
+                    listOfActors.add(newActor);
+                    break;
+                }
+            }
+            System.out.println("Новый актер успешно добавлен. Список актеров:\n" + listOfActors);
+        } else {
+            System.out.println("Актера нет в списке");
+        }
     }
 }

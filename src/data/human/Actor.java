@@ -1,5 +1,7 @@
 package data.human;
 
+import java.util.Objects;
+
 public class Actor extends Person {
     private final int hight;
 
@@ -10,6 +12,18 @@ public class Actor extends Person {
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + " (" + hight + ")";
+        return super.firstName + " " + super.lastName + " (" + hight + ")";
+    }
+    //afterfix 1
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Actor actor = (Actor) o;
+        return Objects.equals(firstName, actor.firstName) && Objects.equals(lastName, actor.lastName)
+                && gender == actor.gender;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 }

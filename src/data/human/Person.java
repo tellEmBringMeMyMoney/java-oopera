@@ -17,7 +17,8 @@ public class Person {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && gender == person.gender;
+        return Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName)
+                && gender == person.gender;
     }
 
     @Override
@@ -34,5 +35,13 @@ public class Person {
         }
         hash += gender.hashCode();
         return hash;
+    }
+    //afterfix 1
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

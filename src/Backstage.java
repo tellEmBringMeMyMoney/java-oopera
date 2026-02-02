@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class Backstage {
 
+    Show show;
     Ballet ballet;
     Opera opera;
     Piece piece;
@@ -42,11 +43,9 @@ public class Backstage {
                     System.out.println("----------Распечатка представлений----------");
                     printShows();
                     System.out.println("----------Замена актера из пула----------");
-                    swapActors(opera, opera.getListOfActors().getFirst(),
-                            piece, piece.getListOfActors().getLast());
+                    piece.changeActors(actor4, "Оперный");
                     System.out.println("----------Замена актера не из пула----------");
-                    swapActors(opera, opera.getListOfActors().getFirst(),
-                            piece, actor4);
+                    opera.changeActors(actor1, "Крупный");
                     System.out.println("----------Либретто оперы и балета----------");
                     printLibretto();
                     break;
@@ -105,40 +104,14 @@ public class Backstage {
         System.out.println(ballet + "\n");
     }
 
-    public boolean checkActor(ArrayList<Actor> list, Actor person){
-        boolean result = false;
-        for (Actor men : list){
-            if (men.hashCode() == person.hashCode()){
-                result = true;
-            }
-        }
-        return result;
-    }
 
-    public void swapActors(Show show1, Actor actor1, Show show2, Actor actor2){
-        System.out.println("Список до изменения: \n" + piece.shortPrint() + "\n" + opera.shortPrint() +
-                "\n" + ballet.shortPrint()+ "\n");
-        if (checkActor(show1.getListOfActors(), actor1) && checkActor(show2.getListOfActors(), actor2)){
-            ArrayList<Actor> list1;
-            ArrayList<Actor> list2;
-            list1 = show1.getListOfActors();
-            list2 = show2.getListOfActors();
-            list1.remove(actor1);
-            list2.remove(actor2);
-            list1.add(actor2);
-            list2.add(actor1);
-            show1.setListOfActors(list1);
-            show2.setListOfActors(list2);
-        } else {
-            System.out.println("Одного из актеров нет в списках. Проверьте ещё раз.\n");
-        }
-        System.out.println("Список после замены: \n" + piece.shortPrint() + "\n" + opera.shortPrint() +
-                "\n" + ballet.shortPrint()+ "\n");
 
-    }
+
 
     public  void printLibretto(){
+        System.out.println("Текст Оперы");
         opera.printLibretto();
+        System.out.println("\n Текст баллета");
         ballet.printLibretto();
     }
 }
