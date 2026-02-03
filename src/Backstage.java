@@ -94,9 +94,9 @@ public class Backstage {
         piece = new Piece("Али Обжект и 40 наследников", "Пьеса", pieceCast, director1,
                 pieceLibretto);
         opera = new Opera("Назвался интом - полезай в обертку", "Опера", operaCast,
-                director2, composer, operaLibretto);
-        ballet = new Ballet("Через тернары к строкам", "Балет", balletCast, director1,
-                 composer, choreographer, balletLibretto);
+                director2, operaLibretto);
+        ballet = new Ballet("Через тернары к строкам", "Балет", balletCast, choreographer,
+                 balletLibretto);
     }
     public void printShows(){
         System.out.println(piece + "\n");

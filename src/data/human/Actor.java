@@ -12,18 +12,15 @@ public class Actor extends Person {
 
     @Override
     public String toString() {
-        return super.firstName + " " + super.lastName + " (" + hight + ")";
+        return super.toString() + " (" + hight + ")";
     }
     //afterfix 1
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Actor actor = (Actor) o;
-        return Objects.equals(firstName, actor.firstName) && Objects.equals(lastName, actor.lastName)
-                && gender == actor.gender;
+        return super.equals(actor) && hight == actor.hight;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
+    
 }

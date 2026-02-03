@@ -10,8 +10,8 @@ public class Opera extends MusicalShow{
     private final String librettoText;
 
     public Opera(String title, String genre, ArrayList<Actor> listOfActors, Director director,
-                 Director composer, String librettoText) {
-        super(title, genre, listOfActors, director, composer, librettoText);
+                  String librettoText) {
+        super(title, genre, listOfActors, director, librettoText);
         this.librettoText = librettoText;
     }
 
@@ -19,7 +19,6 @@ public class Opera extends MusicalShow{
     public String toString() {
         return genre + " - \"" + title + "\"" + '\n' +
                 "Постановка - " + director + '\n' +
-                "Музыка - " + composer + '\n' +
                 "В ролях: " + listOfActors + '\n' +
                 "Текст: " + librettoText + '\n';
     }

@@ -35,8 +35,8 @@ public class Show {
         System.out.println(director);
     }
 
-    public void addNewActor(Show show, Actor actor){
-        if (!checkActor(show.listOfActors, actor)){
+    public void addNewActor(Actor actor){
+        if (!checkActor(this.listOfActors, actor)){
             listOfActors.add(actor);
             System.out.printf("Актер " + actor + "успешно добавлен");
         } else {
@@ -54,27 +54,20 @@ public class Show {
         return result;
     }
 
-    private boolean checkLastName(String lastName){
-        boolean result = false;
-        for (Actor men : listOfActors){
-            if (men.getLastName().equals(lastName)){
-                result = true;
-            }
-        }
-        return result;
-    }
 
     public void changeActors(Actor newActor, String lastName){
-        if(checkLastName(lastName)){
+        boolean isActor = false;
             for (Actor actor : listOfActors){
                 if (lastName.equals(actor.getLastName())){
                     listOfActors.remove(actor);
                     listOfActors.add(newActor);
+                    isActor = true;
                     break;
                 }
             }
+            if(isActor){
             System.out.println("Новый актер успешно добавлен. Список актеров:\n" + listOfActors);
-        } else {
+            } else {
             System.out.println("Актера нет в списке");
         }
     }

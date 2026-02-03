@@ -13,6 +13,15 @@ public class Person {
         this.gender = gender;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -37,11 +46,5 @@ public class Person {
         return hash;
     }
     //afterfix 1
-    @Override
-    public String toString() {
-        return "Person{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
+
 }
